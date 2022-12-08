@@ -13,3 +13,16 @@ func NewTeam(id, name string, players []*Player) *Team {
 		Players: players,
 	}
 }
+
+func (t *Team) AddPlayer(player *Player) {
+	t.Players = append(t.Players, player)
+}
+
+func (t *Team) RemovePlayer(player *Player) {
+	for i, p := range t.Players {
+		if p.ID == player.ID {
+			t.Players = append(t.Players[:i], t.Players[i+1:]...)
+			return
+		}
+	}
+}
